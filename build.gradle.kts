@@ -5,6 +5,7 @@ version = "1.0-SNAPSHOT"
 
 val gdxVersion by extra("1.9.9")
 val ktxVersion by extra("1.9.9-b1")
+val ashleyVersion by extra("1.7.3")
 
 plugins {
     idea
@@ -42,8 +43,11 @@ subprojects {
         compile("com.badlogicgames.gdx", "gdx-box2d", gdxVersion)
         compile("com.badlogicgames.gdx:gdx-box2d-platform:$gdxVersion:natives-desktop")
         compile("com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-desktop")
+        compile("com.badlogicgames.ashley:ashley:$ashleyVersion")
         compile("io.github.libktx", "ktx-app", ktxVersion)
         compile("io.github.libktx", "ktx-assets", ktxVersion)
+        compile("io.github.libktx", "ktx-graphics", ktxVersion)
+        compile("io.github.libktx", "ktx-ashley", ktxVersion)
     }
 }
 
