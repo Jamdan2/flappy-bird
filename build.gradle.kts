@@ -48,6 +48,7 @@ subprojects {
         compile("io.github.libktx", "ktx-assets", ktxVersion)
         compile("io.github.libktx", "ktx-graphics", ktxVersion)
         compile("io.github.libktx", "ktx-ashley", ktxVersion)
+        compile("io.github.libktx", "ktx-inject", ktxVersion)
     }
 }
 
