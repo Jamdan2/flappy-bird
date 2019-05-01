@@ -5,9 +5,6 @@ import ktx.app.KtxGame
 import ktx.app.KtxScreen
 
 class Game : KtxGame<KtxScreen>() {
-    val width = 2400f
-    val height = 1600f
-
     override fun create() {
         addScreen(GameScreen(this))
         setScreen<GameScreen>()

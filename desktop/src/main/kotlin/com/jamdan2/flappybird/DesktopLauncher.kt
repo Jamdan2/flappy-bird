@@ -4,7 +4,7 @@ import com.badlogic.gdx.backends.lwjgl.LwjglApplication
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration
 
 fun main() {
-    LwjglApplication(Game, LwjglApplicationConfiguration().apply {
+    LwjglApplication(Game(), LwjglApplicationConfiguration().apply {
         title = "Flappy Bird"
         width = 2400
         height = 1600
