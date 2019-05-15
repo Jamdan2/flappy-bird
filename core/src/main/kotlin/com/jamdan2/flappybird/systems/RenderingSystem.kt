@@ -10,7 +10,6 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.jamdan2.flappybird.components.PositionComponent
 import com.jamdan2.flappybird.components.SpriteComponent
 
-
 class RenderingSystem(val batch: SpriteBatch) : IteratingSystem(Family.all(SpriteComponent::class.java, PositionComponent::class.java).get()) {
     private val spriteMapper = ComponentMapper.getFor(SpriteComponent::class.java)
     private val positionMapper = ComponentMapper.getFor(PositionComponent::class.java)
