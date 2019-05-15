@@ -27,9 +27,9 @@ class RenderingSystem(val batch: SpriteBatch) : IteratingSystem(Family.all(Sprit
         batch.projectionMatrix = camera.combined
         batch.begin()
 
-        renderQueue.forEach {
-            renderQueue.sortBy { positionMapper.get(it).z }
+        renderQueue.sortBy { positionMapper.get(it).z }
 
+        renderQueue.forEach {
             val sprite = spriteMapper.get(it)
             val position = positionMapper.get(it)
             batch.draw(
