@@ -8,7 +8,7 @@ sealed class EntityComponents : Component {
     class BirdComponent : EntityComponents()
 }
 
-data class SpriteComponent(val sprite: Sprite): Component
+data class SpriteComponent(val sprite: Sprite) : Component
 
 data class PositionComponent(
         var x: Float,
@@ -16,13 +16,13 @@ data class PositionComponent(
         val z: Float,
         val width: Float,
         val height: Float
-): Component
+) : Component
 
 data class DeltaComponent(
         var dx: Float,
         var dy: Float
-): Component
+) : Component
 
 data class ControlComponent(
         var jump: Boolean
-): Component
+) : Component
