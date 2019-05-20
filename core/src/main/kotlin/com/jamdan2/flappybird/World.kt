@@ -15,8 +15,7 @@ class World(private val engine: Engine) {
         engine.entity {
             entity.apply {
                 val texture = Texture("bird.png")
-                add(EntityComponents.BirdComponent())
-                add(SpriteComponent(Sprite(texture)))
+                add(VisualComponent(Sprite(texture), true))
                 add(PositionComponent(xSpawn, ySpawn, 0f, texture.width.toFloat(), texture.height.toFloat()))
                 add(DeltaComponent(10f, 0f))
                 add(ControlComponent(false))

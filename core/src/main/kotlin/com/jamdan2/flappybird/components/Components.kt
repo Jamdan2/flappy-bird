@@ -3,12 +3,10 @@ package com.jamdan2.flappybird.components
 import com.badlogic.ashley.core.Component
 import com.badlogic.gdx.graphics.g2d.Sprite
 
-sealed class EntityComponents : Component {
-    @Suppress("CanSealedSubClassBeObject") // Needs to be class for use in systems
-    class BirdComponent : EntityComponents()
-}
-
-data class SpriteComponent(val sprite: Sprite) : Component
+data class VisualComponent(
+        val sprite: Sprite,
+        val center: Boolean
+) : Component
 
 data class PositionComponent(
         var x: Float,

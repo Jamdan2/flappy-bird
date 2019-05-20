@@ -6,10 +6,8 @@ import com.badlogic.ashley.core.Family
 import com.badlogic.ashley.systems.IteratingSystem
 import com.jamdan2.flappybird.components.ControlComponent
 import com.jamdan2.flappybird.components.DeltaComponent
-import com.jamdan2.flappybird.components.EntityComponents
 
 class BirdSystem : IteratingSystem(Family.all(
-        EntityComponents.BirdComponent::class.java,
         ControlComponent::class.java,
         DeltaComponent::class.java
 ).get()) {
