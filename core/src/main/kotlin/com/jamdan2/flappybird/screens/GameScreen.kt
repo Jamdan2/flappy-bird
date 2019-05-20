@@ -7,9 +7,7 @@ import com.badlogic.gdx.scenes.scene2d.Stage
 import com.jamdan2.flappybird.Game
 import com.jamdan2.flappybird.World
 import com.jamdan2.flappybird.components.SpriteComponent
-import com.jamdan2.flappybird.systems.DeltaSystem
-import com.jamdan2.flappybird.systems.GravitySystem
-import com.jamdan2.flappybird.systems.RenderingSystem
+import com.jamdan2.flappybird.systems.*
 import ktx.app.KtxScreen
 import ktx.ashley.entity
 
@@ -25,6 +23,8 @@ class GameScreen(val game: Game) : KtxScreen {
             addSystem(RenderingSystem(game.batch))
             addSystem(DeltaSystem())
             addSystem(GravitySystem())
+            addSystem(ControlSystem())
+            addSystem(BirdSystem())
         }
         engine.entity {
             entity.apply {

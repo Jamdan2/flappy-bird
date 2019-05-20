@@ -16,7 +16,7 @@ class RenderingSystem(val batch: SpriteBatch) : IteratingSystem(Family.all(Sprit
 
     private val renderQueue = mutableListOf<Entity>()
 
-    private val camera = OrthographicCamera(Gdx.graphics.width.toFloat(), Gdx.graphics.height.toFloat()).apply {
+    val camera = OrthographicCamera(Gdx.graphics.width.toFloat(), Gdx.graphics.height.toFloat()).apply {
         position.set(Gdx.graphics.width / 2f, Gdx.graphics.height / 2f, 0f)
     }
 

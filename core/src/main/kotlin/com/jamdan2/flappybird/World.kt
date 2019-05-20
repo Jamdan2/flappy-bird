@@ -4,9 +4,7 @@ import com.badlogic.ashley.core.Engine
 import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.graphics.Texture
 import com.badlogic.gdx.graphics.g2d.Sprite
-import com.jamdan2.flappybird.components.DeltaComponent
-import com.jamdan2.flappybird.components.PositionComponent
-import com.jamdan2.flappybird.components.SpriteComponent
+import com.jamdan2.flappybird.components.*
 import ktx.ashley.entity
 
 class World(private val engine: Engine) {
@@ -17,9 +15,11 @@ class World(private val engine: Engine) {
         engine.entity {
             entity.apply {
                 val texture = Texture("bird.png")
+                add(EntityComponents.BirdComponent())
                 add(SpriteComponent(Sprite(texture)))
                 add(PositionComponent(xSpawn, ySpawn, 0f, texture.width.toFloat(), texture.height.toFloat()))
-                add(DeltaComponent(0f, 0f))
+                add(DeltaComponent(10f, 0f))
+                add(ControlComponent(false))
             }
         }
     }
