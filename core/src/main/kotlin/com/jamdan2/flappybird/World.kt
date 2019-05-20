@@ -8,7 +8,7 @@ import com.jamdan2.flappybird.components.*
 import ktx.ashley.entity
 
 class World(private val engine: Engine) {
-    private val xSpawn = Gdx.graphics.width.toFloat() / 2
+    private val xSpawn = Gdx.graphics.width.toFloat() / 4
     private val ySpawn = Gdx.graphics.height.toFloat() / 2
 
     fun createBird() {

@@ -7,12 +7,15 @@ import com.badlogic.ashley.core.Family
 import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.graphics.OrthographicCamera
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
+import com.jamdan2.flappybird.components.EntityComponents
 import com.jamdan2.flappybird.components.PositionComponent
 import com.jamdan2.flappybird.components.SpriteComponent
+import ktx.ashley.has
 
 class RenderingSystem(val batch: SpriteBatch) : IteratingSystem(Family.all(SpriteComponent::class.java, PositionComponent::class.java).get()) {
     private val spriteMapper = ComponentMapper.getFor(SpriteComponent::class.java)
     private val positionMapper = ComponentMapper.getFor(PositionComponent::class.java)
+    private val birdMapper = ComponentMapper.getFor(EntityComponents.BirdComponent::class.java)
 
     private val renderQueue = mutableListOf<Entity>()
 
@@ -31,6 +34,7 @@ class RenderingSystem(val batch: SpriteBatch) : IteratingSystem(Family.all(Sprit
         renderQueue.forEach {
             val sprite = spriteMapper.get(it)
             val position = positionMapper.get(it)
+            if (it.has(birdMapper) && position.x > camera.position.x) camera.position.x = position.x
             batch.draw(
                     sprite.sprite.texture,
                     position.x - (position.width / 2),
