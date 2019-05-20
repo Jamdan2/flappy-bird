@@ -26,11 +26,6 @@ class GameScreen(val game: Game) : KtxScreen {
             addSystem(ControlSystem())
             addSystem(BirdSystem())
         }
-        engine.entity {
-            entity.apply {
-                add(SpriteComponent(Sprite(Texture("bird.png"))))
-            }
-        }
 
         // Bird created for testing purposes
         world.createBird()
