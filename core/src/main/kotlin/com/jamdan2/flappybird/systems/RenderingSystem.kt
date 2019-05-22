@@ -7,12 +7,15 @@ import com.badlogic.ashley.core.Family
 import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.graphics.OrthographicCamera
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
+import com.jamdan2.flappybird.components.DeltaComponent
 import com.jamdan2.flappybird.components.PositionComponent
 import com.jamdan2.flappybird.components.VisualComponent
+import ktx.ashley.has
 
 class RenderingSystem(val batch: SpriteBatch) : IteratingSystem(Family.all(VisualComponent::class.java, PositionComponent::class.java).get()) {
     private val spriteMapper = ComponentMapper.getFor(VisualComponent::class.java)
     private val positionMapper = ComponentMapper.getFor(PositionComponent::class.java)
+    private val deltaMapper = ComponentMapper.getFor(DeltaComponent::class.java)
 
     private val renderQueue = mutableListOf<Entity>()
 
@@ -32,12 +35,33 @@ class RenderingSystem(val batch: SpriteBatch) : IteratingSystem(Family.all(Visua
             val visual = spriteMapper.get(it)
             val position = positionMapper.get(it)
             if (visual.center && position.x > camera.position.x) camera.position.x = position.x
+//            batch.draw(
+//                    visual.sprite!!.texture,
+//                    position.x - (position.width / 2),
+//                    position.y - (position.height / 2),
+//                    0f,
+//                    0f,
+//                    position.width,
+//                    position.height,
+//                    4
+//            )
             batch.draw(
-                    visual.sprite.texture,
+                    visual.sprite!!.texture,
                     position.x - (position.width / 2),
                     position.y - (position.height / 2),
+                    (position.width / 2),
+                    (position.height / 2),
                     position.width,
-                    position.height
+                    position.height,
+                    1f,
+                    1f,
+                    position.angle,
+                    0,
+                    0,
+                    visual.sprite.texture.width,
+                    visual.sprite.texture.height,
+                    false,
+                    false
             )
         }
 

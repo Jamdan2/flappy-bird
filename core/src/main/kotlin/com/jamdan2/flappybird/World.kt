@@ -1,6 +1,7 @@
 package com.jamdan2.flappybird
 
 import com.badlogic.ashley.core.Engine
+import com.badlogic.ashley.core.Family
 import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.graphics.Texture
 import com.badlogic.gdx.graphics.g2d.Sprite
@@ -16,10 +17,19 @@ class World(private val engine: Engine) {
             entity.apply {
                 val texture = Texture("bird.png")
                 add(VisualComponent(Sprite(texture), true))
-                add(PositionComponent(xSpawn, ySpawn, 0f, texture.width.toFloat(), texture.height.toFloat()))
+                add(PositionComponent(xSpawn, ySpawn, 1f, texture.width.toFloat(), texture.height.toFloat(), 0f))
                 add(DeltaComponent(10f, 0f))
                 add(ControlComponent(false))
             }
         }
     }
+
+//    fun createPipe(x: Float) {
+//        engine.entity {
+//            entity.apply {
+//                add(PositionComponent(x, 0f, 0f, 20f, ))
+//                Family.all().one()
+//            }
+//        }
+//    }
 }
