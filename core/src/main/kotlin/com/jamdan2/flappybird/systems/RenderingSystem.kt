@@ -7,13 +7,11 @@ import com.badlogic.ashley.core.Family
 import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.graphics.OrthographicCamera
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
-import com.jamdan2.flappybird.components.DeltaComponent
-import com.jamdan2.flappybird.components.PositionComponent
-import com.jamdan2.flappybird.components.VisualComponent
-import ktx.ashley.has
+import com.badlogic.gdx.graphics.g2d.TextureRegion
+import com.jamdan2.flappybird.components.*
 
-class RenderingSystem(val batch: SpriteBatch) : IteratingSystem(Family.all(VisualComponent::class.java, PositionComponent::class.java).get()) {
-    private val spriteMapper = ComponentMapper.getFor(VisualComponent::class.java)
+class RenderingSystem(val batch: SpriteBatch) : IteratingSystem(Family.all(SimpleVisualComponent::class.java, PositionComponent::class.java).get()) {
+    private val spriteMapper = ComponentMapper.getFor(SimpleVisualComponent::class.java)
     private val positionMapper = ComponentMapper.getFor(PositionComponent::class.java)
     private val deltaMapper = ComponentMapper.getFor(DeltaComponent::class.java)
 
@@ -35,34 +33,63 @@ class RenderingSystem(val batch: SpriteBatch) : IteratingSystem(Family.all(Visua
             val visual = spriteMapper.get(it)
             val position = positionMapper.get(it)
             if (visual.center && position.x > camera.position.x) camera.position.x = position.x
-//            batch.draw(
-//                    visual.sprite!!.texture,
-//                    position.x - (position.width / 2),
-//                    position.y - (position.height / 2),
-//                    0f,
-//                    0f,
-//                    position.width,
-//                    position.height,
-//                    4
-//            )
-            batch.draw(
-                    visual.sprite!!.texture,
-                    position.x - (position.width / 2),
-                    position.y - (position.height / 2),
-                    (position.width / 2),
-                    (position.height / 2),
-                    position.width,
-                    position.height,
-                    1f,
-                    1f,
-                    position.angle,
-                    0,
-                    0,
-                    visual.sprite.texture.width,
-                    visual.sprite.texture.height,
-                    false,
-                    false
-            )
+            if (visual.stretchBottomOnly) {
+                batch.draw(
+                        TextureRegion(
+                                visual.texture,
+                                0,
+                                0,
+                                visual.texture.width,
+                                visual.texture.height / 2
+                        ).apply { flip(position.flipX, position.flipY) },
+                        position.x - (position.width / 2),
+                        (position.y - (position.height / 2)) + (position.height - (visual.texture.height / 2)),
+                        (position.width / 2),
+                        (position.height / 2) - (position.height - visual.texture.height / 2),
+                        position.width,
+                        (visual.texture.height / 2).toFloat(),
+                        1f,
+                        1f,
+                        position.angle
+                )
+                batch.draw(
+                        TextureRegion(
+                                visual.texture,
+                                0,
+                                visual.texture.height / 2,
+                                position.width.toInt(),
+                                visual.texture.height / 2
+                        ).apply { flip(position.flipX, position.flipY) },
+                        position.x - (position.width / 2),
+                        position.y - (position.height / 2),
+                        (position.width / 2),
+                        (position.height / 2),
+                        position.width,
+                        position.height - (visual.texture.height / 2).toFloat(),
+                        1f,
+                        1f,
+                        position.angle
+                )
+            } else {
+                batch.draw(
+                        visual.texture,
+                        position.x - (position.width / 2),
+                        position.y - (position.height / 2),
+                        (position.width / 2),
+                        (position.height / 2),
+                        position.width,
+                        position.height,
+                        1f,
+                        1f,
+                        position.angle,
+                        0,
+                        0,
+                        visual.texture.width,
+                        visual.texture.height,
+                        position.flipX,
+                        position.flipY
+                )
+            }
         }
 
         batch.end()

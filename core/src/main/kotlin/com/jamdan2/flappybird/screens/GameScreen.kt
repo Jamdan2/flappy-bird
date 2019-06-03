@@ -25,6 +25,7 @@ class GameScreen(val game: Game) : KtxScreen {
 
         // Bird created for testing purposes
         world.createBird()
+        world.createPipe()
     }
 
     private fun update(delta: Float) {
