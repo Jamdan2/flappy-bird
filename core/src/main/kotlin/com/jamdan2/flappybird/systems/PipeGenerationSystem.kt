@@ -28,5 +28,4 @@ class PipeGenerationSystem(val world: World) : IteratingSystem(Family.all(Contro
             nextPipePosition += world.pipeSpacer
         }
     }
-
 }
