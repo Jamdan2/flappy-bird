@@ -13,11 +13,6 @@ data class SimpleVisualComponent(
         val stretchBottomOnly: Boolean = false
 ) : VisualComponent()
 
-data class RayVisualComponent(
-        val texture: Texture,
-        override val center: Boolean
-) : VisualComponent()
-
 data class PositionComponent(
         var x: Float,
         var y: Float,
