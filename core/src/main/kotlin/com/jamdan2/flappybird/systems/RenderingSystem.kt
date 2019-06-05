@@ -10,8 +10,8 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.badlogic.gdx.graphics.g2d.TextureRegion
 import com.jamdan2.flappybird.components.*
 
-class RenderingSystem(val batch: SpriteBatch) : IteratingSystem(Family.all(SimpleVisualComponent::class.java, PositionComponent::class.java).get()) {
-    private val spriteMapper = ComponentMapper.getFor(SimpleVisualComponent::class.java)
+class RenderingSystem(val batch: SpriteBatch) : IteratingSystem(Family.all(VisualComponent::class.java, PositionComponent::class.java).get()) {
+    private val spriteMapper = ComponentMapper.getFor(VisualComponent::class.java)
     private val positionMapper = ComponentMapper.getFor(PositionComponent::class.java)
     private val deltaMapper = ComponentMapper.getFor(DeltaComponent::class.java)
 

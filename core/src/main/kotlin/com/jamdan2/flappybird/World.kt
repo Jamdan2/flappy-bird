@@ -20,7 +20,7 @@ class World(private val engine: Engine) {
         engine.entity {
             entity.apply {
                 val texture = Texture("bird.png")
-                add(SimpleVisualComponent(texture, center = true))
+                add(VisualComponent(texture, center = true))
                 add(PositionComponent(xSpawn, ySpawn, 1f, texture.width.toFloat() / 2, texture.height.toFloat() / 2))
                 add(DeltaComponent(10f, 0f))
                 add(ControlComponent(false))
@@ -32,7 +32,7 @@ class World(private val engine: Engine) {
         engine.entity {
             entity.apply {
                 val texture = Texture("pipe.png")
-                add(SimpleVisualComponent(texture, stretchBottomOnly = true))
+                add(VisualComponent(texture, stretchBottomOnly = true))
                 add(PositionComponent(
                         x = x,
                         y = y,

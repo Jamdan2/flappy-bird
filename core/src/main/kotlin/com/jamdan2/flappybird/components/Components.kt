@@ -3,15 +3,11 @@ package com.jamdan2.flappybird.components
 import com.badlogic.ashley.core.Component
 import com.badlogic.gdx.graphics.Texture
 
-sealed class VisualComponent : Component {
-    abstract val center: Boolean
-}
-
-data class SimpleVisualComponent(
+data class VisualComponent(
         val texture: Texture,
-        override val center: Boolean = false,
+        val center: Boolean = false,
         val stretchBottomOnly: Boolean = false
-) : VisualComponent()
+) : Component
 
 data class PositionComponent(
         var x: Float,
