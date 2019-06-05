@@ -21,11 +21,11 @@ class GameScreen(val game: Game) : KtxScreen {
             addSystem(GravitySystem())
             addSystem(ControlSystem())
             addSystem(BirdSystem())
+            addSystem(PipeGenerationSystem(world))
         }
 
         // Bird created for testing purposes
         world.createBird()
-        world.createPipe()
     }
 
     private fun update(delta: Float) {
