@@ -14,8 +14,6 @@ import kotlin.random.Random
 class PipeGenerationSystem(val world: World) : IteratingSystem(Family.all(ControlComponent::class.java, PositionComponent::class.java).get()) {
     val positionMapper = ComponentMapper.getFor(PositionComponent::class.java)
 
-    private val firstPipePosition = Gdx.graphics.width * 0.75f
-
     private var nextPipePosition = world.firstPipe
 
     override fun processEntity(entity: Entity?, deltaTime: Float) {
